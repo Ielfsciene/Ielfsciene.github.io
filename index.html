@@ -7,11 +7,272 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Portfolio E4</title>
 	<style>
-		body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-		h1 { color: #333; }
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(270deg, #f0f4f8, #dceefb, #b3e5fc); 
+            background-size: 600% 600%;
+            animation: gradientBackground 15s ease infinite;
+            color: #333; 
+            text-align: center; /* Center text alignment */
+        }
+		h1 { 
+			color: #37474f; /* Dark gray color */
+			font-size: 2.5em; /* Increase font size */
+			margin-bottom: 20px; /* Add margin for spacing */
+		}
+		p {
+			color: #455a64; /* Dark gray for text */
+			font-size: 1.25em; /* Increase font size */
+			margin-bottom: 30px; /* Add margin for spacing */
+		}
+		.project-container { 
+			display: flex; 
+			flex-wrap: wrap; 
+			gap: 20px; 
+			justify-content: center;
+		}
+		.project { 
+			border: 1px solid #b0bec5; 
+			border-radius: 10px; 
+			padding: 15px; 
+			margin: 10px; 
+			cursor: pointer; 
+			width: 250px; 
+			background: linear-gradient(135deg, #90caf9 0%, #42a5f5 100%); /* Blue gradient background */
+			color: #333; /* Dark gray text for better legibility */
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+			transition: transform 0.2s, box-shadow 0.2s; 
+		}
+		.project:hover { 
+			transform: scale(1.05); 
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
+		}
+		.modal { 
+			display: none; 
+			position: fixed; 
+			z-index: 1; 
+			padding-top: 60px; 
+			left: 0; 
+			top: 0; 
+			width: 100%; 
+			height: 100%; 
+			overflow: auto; 
+			background-color: rgba(0, 0, 0, 0.7); 
+		}
+		.modal-content { 
+			background-color: #ffffff; 
+			margin: auto; 
+			padding: 20px; 
+			border: 1px solid #b0bec5; 
+			width: 80%; 
+			max-height: 80vh; /* Set maximum height */
+			overflow-y: auto; /* Enable vertical scrolling */
+			border-radius: 10px; 
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); 
+			animation: slide-down 0.3s ease-out; 
+			text-align: left; /* Align text to the left for better readability */
+		}
+		.modal-content h2 { 
+			color: #1976d2; /* Blue color */
+			text-align: center; /* Center the heading */
+		}
+		.modal-content p { 
+			line-height: 1.6; 
+			color: #455a64; /* Dark gray for text */
+		}
+		.close { 
+			color: #aaa; 
+			float: right; 
+			font-size: 28px; 
+			font-weight: bold; 
+		}
+		.close:hover, .close:focus { 
+			color: #000; 
+			text-decoration: none; 
+			cursor: pointer; 
+		}
+		.modal-header, .modal-body, .modal-footer { 
+			margin-bottom: 20px; 
+		}
+		.modal-footer { 
+			text-align: right; 
+		}
+		.modal-footer button { 
+			padding: 10px 20px; 
+			background-color: #1976d2; 
+			color: #ffffff; 
+			border: none; 
+			border-radius: 5px; 
+			cursor: pointer; 
+		}
+		.modal-footer button:hover { 
+			background-color: #1565c0; 
+		}
+		ul {
+			list-style-position: inside; /* Align bullet points inside the list */
+			padding-left: 0; /* Remove default padding */
+			margin-left: 0; /* Remove default margin */
+			text-align: left; /* Ensure text is left-aligned */
+		}
+		li {
+			margin-bottom: 10px; /* Add spacing between list items */
+		}
+		@keyframes slide-down {
+			from {
+				transform: translateY(-50px);
+				opacity: 0;
+			}
+			to {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
 	</style>
 </head>
 <body>
-	<h1>Lorem ipsum dolor sit amet</h1>
+	<h1>Welcome to my portfolio</h1>
+	<p>Hello, I'm Kyllian. Here is an overview of my projects:</p>
+
+	<div class="project-container">
+		<!-- Project 1 -->
+		<div class="project" onclick="openModal('modal1')">
+			<h2>Evolution of a Notification Product</h2>
+			<p>11/22 to 02/23</p>
+		</div>
+
+		<!-- Project 2 -->
+		<div class="project" onclick="openModal('modal2')">
+			<h2>D365FO Developments</h2>
+			<p>03/23 to 04/24</p>
+		</div>
+
+		<!-- Project 3 -->
+		<div class="project" onclick="openModal('modal3')">
+			<h2>Azure Active Directory Management</h2>
+			<p>06/23 to 07/23</p>
+		</div>
+
+		<!-- Project 4 -->
+		<div class="project" onclick="openModal('modal4')">
+			<h2>Continued Notification Product Evolution</h2>
+			<p>02/23 to 04/24</p>
+		</div>
+	</div>
+
+	<!-- Modals --><!-- Modal 1 -->
+	<!-- Modal 1 -->
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeModal('modal1')">&times;</span>
+			<div class="modal-header">
+				<h2>Evolution of a Notification Product</h2>
+			</div>
+			<div class="modal-body">
+				<p><strong>Dates:</strong> 11/22 to 01/23, 02/23</p>
+				<p><strong>Project Overview:</strong> Enhanced an existing WPF-based notification application by adding rich text functionalities to an existing window. Specifically, added support for bold, italic, and underlined text, as well as hyperlinks and images.</p>
+				<p><strong>Your Role:</strong> Sole developer responsible for implementing the new features. Collaborated with the QA team for validation and a senior coworker for guidance.</p>
+				<p><strong>Technologies and Tools Used:</strong> WPF, C#</p>
+				<p><strong>Key Challenges and Solutions:</strong> The primary challenge was ensuring backwards compatibility between the previous version, which stored notification details as plain text, and the new version, which stored the full contents of the FlowDocument of the rich text box. Addressed this by either stripping all tags from the text or creating and adding tags to make the text compatible.</p>
+				<p><strong>Outcomes and Impact:</strong> The new version allowed the company to link to documentation and include images to communicate information more effectively. Images were stored as base64 in the database to keep them lightweight.</p>
+				<!-- Add images, documents, or any other relevant details here -->
+			</div>
+			<div class="modal-footer">
+				<button onclick="closeModal('modal1')">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal 2 (Capstone Project) -->
+	<div id="modal2" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeModal('modal2')">&times;</span>
+			<div class="modal-header">
+				<h2>D365FO Developments (Capstone Project)</h2>
+			</div>
+			<div class="modal-body">
+				<p><strong>Dates:</strong> 03/23 to 04/24</p>
+				<p><strong>Project Overview:</strong> The primary objective was to perform lifecycle maintenance on our existing ERP software through Microsoft Dynamics 365 Finance & Operations (D365FO).</p>
+				<p><strong>Your Role:</strong> One of three developers on the team, working closely with a dedicated QA tester for Finance & Operations. Initially handled simple tasks, then progressed to essential aspects of the system such as data entities, menu items, forms, run dialogs, and localization through label files.</p>
+				<p><strong>Technologies and Tools Used:</strong> Microsoft Dynamics 365 Finance & Operations, X++</p>
+				<p><strong>Key Challenges and Solutions:</strong> The niche nature of FO technology means limited public resources, relying heavily on Microsoft documentation, which can be complex. Often, the best solutions were found through collaboration with colleagues.</p>
+				<p><strong>Major Phases and Activities:</strong>
+					<ul>
+						<li><strong>Training (4 weeks):</strong> Comprehensive training on FO basics.</li>
+						<li><strong>Data Entities:</strong> Managed and created data entities.</li>
+						<li><strong>Code Execution:</strong> Developed run dialogs and other code components.</li>
+						<li><strong>Menu Items and Forms:</strong> Developed and maintained essential UI components.</li>
+						<li><strong>Localization:</strong> Managed localization using label files.</li>
+						<li><strong>API Usage:</strong> Utilized the FO API through ODATA and Postman.</li>
+					</ul>
+				</p>
+				<p><strong>Outcomes and Impact:</strong> Contributed to maintaining and enhancing the ERP system, ensuring smooth operations and updated functionalities. The cumulative effort of microprojects formed the basis of significant system improvements, although specific metrics are confidential.</p>
+				<!-- Add images, documents, or any other relevant details here -->
+			</div>
+			<div class="modal-footer">
+				<button onclick="closeModal('modal2')">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal 3 -->
+	<div id="modal3" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeModal('modal3')">&times;</span>
+			<div class="modal-header">
+				<h2>Azure Active Directory Management Tool</h2>
+			</div>
+			<div class="modal-body">
+				<p><strong>Dates:</strong> 06/23 to 07/23</p>
+				<p><strong>Project Overview:</strong> Evolved an existing small tool for the infrastructure team to manage Azure Active Directory (AAD). Added new functionality to allow deactivating inactive directories and deleting orphaned directories.</p>
+				<p><strong>Your Role:</strong> Sole developer responsible for implementing the new features. Worked directly with the infrastructure team, who provided requirements and conducted testing.</p>
+				<p><strong>Technologies and Tools Used:</strong> .NET, C#</p>
+				<p><strong>Key Challenges and Solutions:</strong> The main challenge was verifying the functionality of the code since I did not have the necessary permissions to alter the AAD and there was no testing environment available. Collaborated closely with the infrastructure team for validation and feedback.</p>
+				<p><strong>Outcomes and Impact:</strong> Successfully enhanced the tool to improve the infrastructure team's ability to manage AAD. This allowed for better maintenance by efficiently deactivating inactive directories and removing orphaned directories, thereby streamlining the management process.</p>
+				<!-- Add images, documents, or any other relevant details here -->
+			</div>
+			<div class="modal-footer">
+				<button onclick="closeModal('modal3')">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal 4 -->
+	<div id="modal4" class="modal">
+		<div class="modal-content">
+			<span class="close" onclick="closeModal('modal4')">&times;</span>
+			<div class="modal-header">
+				<h2>Functional Analysis for Product Evolution</h2>
+			</div>
+			<div class="modal-body">
+				<p><strong>Dates:</strong> 02/23</p>
+				<p><strong>Project Overview:</strong> Conducted a functional analysis to estimate how the existing product could be further adapted to serve the entire group of companies, rather than just a few services within the company.</p>
+				<p><strong>Your Role:</strong> Sole author responsible for conducting the functional analysis. Collaborated with my manager and the Product Owner (PO) for reviews and feedback.</p>
+				<p><strong>Technologies and Tools Used:</strong> Utilized an existing functional analysis (FA) template and a completed FA as references. No specific methodologies or frameworks were involved.</p>
+				<p><strong>Key Challenges and Solutions:</strong> The main challenge was presenting the FA effectively. I had to convincingly sell the idea of the product and explain how it could provide more value than the current solutions. Overcame this by iterating through feedback and refining the analysis.</p>
+				<p><strong>Outcomes and Impact:</strong> The FA was ultimately shelved as it wasn't prioritized, but it provided a detailed plan that could be revisited in the future. It demonstrated the potential for expanding the product's use across the entire group of companies.</p>
+				<!-- Add images, documents, or any other relevant details here -->
+			</div>
+			<div class="modal-footer">
+				<button onclick="closeModal('modal4')">Close</button>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		function openModal(modalId) {
+			document.getElementById(modalId).style.display = "block";
+		}
+
+		function closeModal(modalId) {
+			document.getElementById(modalId).style.display = "none";
+		}
+	</script>
 </body>
 </html>
